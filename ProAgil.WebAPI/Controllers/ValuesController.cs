@@ -11,8 +11,8 @@ namespace ProAgil.WebAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
-
         public readonly ProAgilDataContext _context;
+
         public ValuesController(ProAgilDataContext context )
         {
           _context = context;  

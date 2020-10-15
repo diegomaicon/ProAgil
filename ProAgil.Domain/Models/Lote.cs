@@ -11,6 +11,6 @@ namespace ProAgil.Domain.Models
         public DateTime? MyProperty { get; set; }
         public int Quantidade { get; set; }
         public int EventoId { get; set; }
-        public Evento Evento { get; set; }
+        public Evento Evento { get;  }
     }
 }

@@ -7,7 +7,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using ProAgil.Repository;
 using ProAgil.Repository.Data;
+using ProAgil.Repository.Interface;
 
 namespace ProAgil.WebAPI
 {
@@ -26,6 +28,7 @@ namespace ProAgil.WebAPI
             services.AddDbContext<ProAgilDataContext>(
                 x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );   
+            services.AddScoped<IProAgilRepository, ProAgilRepository>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddCors();
         }

@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using ProAgil.WebAPI.Data;
+using ProAgil.Repository.Data;
 
 namespace ProAgil.WebAPI
 {
@@ -23,7 +23,7 @@ namespace ProAgil.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<DataContext>(
+            services.AddDbContext<ProAgilDataContext>(
                 x => x.UseMySql(Configuration.GetConnectionString("DefaultConnection"))
             );   
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

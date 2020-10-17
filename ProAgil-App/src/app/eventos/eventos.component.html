@@ -14,7 +14,7 @@
     <tr>
       <th>
         <button class="btn btn-outline-primary" (click)="alterarImagem()">
-          Mostrar imagem
+          <i class="{{mostrarimagem ? 'fa fa-eye-slash' : 'fa fa-eye'}}"></i>
         </button>
       </th>
       <th>#</th>
@@ -35,12 +35,19 @@
           [style.margin.px]="imagemMargem"
         > 
        </td> 
-      <td>{{evento.eventoId}}</td>
+      <td>{{evento.id}}</td>
       <td>{{evento.tema }}</td>
       <td>{{evento.local}}</td>
       <td>{{evento.dataEvento}}</td>
       <td>{{evento.qtdPessoas}}</td>
-      <td>{{evento.lote | uppercase}}</td>
+      <td>
+        <div *ngIf="!evento.lote.length" >
+          Não informado
+        </div>
+        <div *ngIf="evento.lote.length" >
+          {{evento.lotes[0].nome | uppercase}}
+        </div>
+      </td>
       <td>
          <button class="btn btn-success">Editar</button>
          <button class="btn btn-danger">Excluir</button> 
@@ -51,7 +58,7 @@
     <tr>
       <td colspan="7" class="center">
         <h3>
-           Nenhum envento encontrado  
+           Nenhum evento encontrado  
         </h3>
       </td>
     </tr>

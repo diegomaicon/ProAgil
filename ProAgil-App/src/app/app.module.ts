@@ -9,10 +9,10 @@ import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
+    NavComponent,
     AppComponent,
-    EventosComponent,
-    NavComponent
+    EventosComponent
    ],
   imports: [
     BrowserModule,

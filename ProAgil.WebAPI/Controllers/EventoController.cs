@@ -26,7 +26,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
         }
@@ -41,7 +41,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
         }
@@ -56,7 +56,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
         }
@@ -74,7 +74,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
             return BadRequest();
@@ -96,7 +96,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
             return BadRequest();
@@ -119,7 +119,7 @@ namespace ProAgil.WebAPI.Controllers
             }
             catch (System.Exception)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Fala Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
             }    
            
             return BadRequest();

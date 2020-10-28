@@ -6,11 +6,11 @@ import { EventoService } from '../services/evento.service';
 @Component({
   selector: 'app-eventos',
   templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.css']
+  styleUrls: ['./eventos.component.css'],
 })
 export class EventosComponent implements OnInit {
 
-  _filtroLista: string;
+  _filtroLista: string = '';
 
   get filtroLista():string {
     return this._filtroLista;
@@ -21,11 +21,13 @@ export class EventosComponent implements OnInit {
     this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
   }
 
+  
   eventosFiltrados: Evento[];
-  eventos : Evento[];
+  eventos: Evento[];
+  evento: Evento;
   imagemLargura = 50;
   imagemMargem = 2;
-  mostrarimagem = false;
+  mostrarImagem = false;
 
 
   constructor(private eventoService : EventoService ) { }
@@ -35,7 +37,7 @@ export class EventosComponent implements OnInit {
   }
 
   alterarImagem(){
-    this.mostrarimagem = !this.mostrarimagem;
+    this.mostrarImagem = !this.mostrarImagem;
   }
 
   filtrarEventos(filtrarpor: string): Evento[]{

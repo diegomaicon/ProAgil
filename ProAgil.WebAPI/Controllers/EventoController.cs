@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,9 +25,9 @@ namespace ProAgil.WebAPI.Controllers
                 var results = await _repo.GetAllEventoAsync(true);
                 return  Ok(results);   
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
             }    
            
         }
@@ -39,9 +40,9 @@ namespace ProAgil.WebAPI.Controllers
                 var results = await _repo.GetAllEventoAsyncById(EventoId, true);
                 return  Ok(results);   
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
             }    
            
         }
@@ -54,9 +55,9 @@ namespace ProAgil.WebAPI.Controllers
                 var results = await _repo.GetAllEventoAsyncByTema(tema, true);
                 return  Ok(results);   
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
             }    
            
         }
@@ -72,10 +73,10 @@ namespace ProAgil.WebAPI.Controllers
                    return Created($"/api/evento{model.Id}",model);
                }
             }
-            catch (System.Exception)
+             catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
-            }    
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
+            }      
            
             return BadRequest();
         }
@@ -94,10 +95,10 @@ namespace ProAgil.WebAPI.Controllers
                    return Created($"/api/evento{model.Id}",model);
                }
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
-            }    
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
+            }      
            
             return BadRequest();
         }
@@ -117,10 +118,10 @@ namespace ProAgil.WebAPI.Controllers
                    return Ok();
                }
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados");
-            }    
+                return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
+            }     
            
             return BadRequest();
         }

@@ -9,6 +9,7 @@ describe('EventosComponent', () => {
   let component: EventosComponent;
   let fixture: ComponentFixture<EventosComponent>;
 
+ 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ EventosComponent ]

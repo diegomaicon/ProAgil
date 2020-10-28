@@ -7,20 +7,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventosComponent } from './eventos/eventos.component';
 import { NavComponent } from './nav/nav.component';
+import { DataTimeFormatPipePipe } from './helps/DataTimeFormatPipe.pipe';
+import { EventoService } from './services/evento.service';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
     NavComponent,
     AppComponent,
-    EventosComponent
+    EventosComponent,
+    DataTimeFormatPipePipe
    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    EventoService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

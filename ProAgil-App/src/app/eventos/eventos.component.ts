@@ -19,15 +19,6 @@ export class EventosComponent implements OnInit {
 
   _filtroLista: string = '';
 
-  get filtroLista():string {
-    return this._filtroLista;
-  }
-
-  set filtroLista(value: string){
-    this._filtroLista = value;
-    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
-  }
-
   titulo = 'Eventos';
   eventosFiltrados: Evento[];
   eventos: Evento[];
@@ -38,6 +29,18 @@ export class EventosComponent implements OnInit {
   mostrarImagem = false;
   registerForm: FormGroup;
   bodyDeletarEvento = '';
+  file : File;
+  fileNameToUpload: string;
+  dataAtual:string;
+
+  get filtroLista():string {
+    return this._filtroLista;
+  }
+
+  set filtroLista(value: string){
+    this._filtroLista = value;
+    this.eventosFiltrados = this.filtroLista ? this.filtrarEventos(this.filtroLista) : this.eventos;
+  }
 
   constructor(
      private eventoService: EventoService,
@@ -78,46 +81,82 @@ export class EventosComponent implements OnInit {
   editarEvento(evento: Evento, template: any){
     this.modoSalvar = 'put';
     this.openModal(template);
-    this.evento = evento;
-    this.registerForm.patchValue(evento);
+    this.evento = Object.assign({}, evento);
+    this.fileNameToUpload = this.evento.imagemURL.toString();
+    this.evento.imagemURL = '';
+    this.registerForm.patchValue(this.evento);
   }
 
   novoEvento(template: any){
     this.openModal(template);
   }
 
-  salvarAlteracao(template: any){
-    if (this.registerForm.valid){
-      if(this.modoSalvar === 'post'){
-          this.evento = Object.assign({}, this.registerForm.value);
-          this.eventoService.postEvento(this.evento).subscribe(
-            (novoEvento: Evento) => {
-              console.log(novoEvento);
-              template.hide();
-              this.getEventos();
-              this.toastr.success('Inserido com sucesso!');
-            }, error => {
-              this.toastr.error('Erro ao tentar inserir! Erro:'+ error);
-              console.log(error);
-            }
-          );
-      }
-      else {
-        this.evento = Object.assign({id: this.evento.id}, this.registerForm.value);
+  uploadImagem() {
+    if (this.modoSalvar === 'post') {
+      const nomeArquivo = this.evento.imagemURL.split('\\', 3);
+      this.evento.imagemURL = nomeArquivo[2];
+
+      this.eventoService.postUpload(this.file, nomeArquivo[2])
+        .subscribe(
+          () => {
+            this.dataAtual = new Date().getMilliseconds().toString();
+            this.getEventos();
+          }
+        );
+    } else {
+      this.evento.imagemURL = this.fileNameToUpload;
+      this.eventoService.postUpload(this.file, this.fileNameToUpload)
+        .subscribe(
+          () => {
+            this.dataAtual = new Date().getMilliseconds().toString();
+            this.getEventos();
+          }
+        );
+    }
+  }
+
+
+  salvarAlteracao(template: any) {
+    if (this.registerForm.valid) {
+      if (this.modoSalvar === 'post') {
+        this.evento = Object.assign({}, this.registerForm.value);
+
+        this.uploadImagem();
+
+        this.eventoService.postEvento(this.evento).subscribe(
+          (novoEvento: Evento) => {
+            template.hide();
+            this.getEventos();
+            this.toastr.success('Inserido com Sucesso!');
+          }, error => {
+            this.toastr.error(`Erro ao Inserir: ${error}`);
+          }
+        );
+      } else {
+        this.evento = Object.assign({ id: this.evento.id }, this.registerForm.value);
+
+        this.uploadImagem();
+
         this.eventoService.putEvento(this.evento).subscribe(
-            () => {
-              template.hide();
-              this.getEventos();
-              this.toastr.success('Editado com sucesso!');
-            }, error => {
-              this.toastr.error('Erro ao tentar editar! Erro:'+ error);
-              console.log(error);
-            }
-          );
+          () => {
+            template.hide();
+            this.getEventos();
+            this.toastr.success('Editado com Sucesso!');
+          }, error => {
+            this.toastr.error(`Erro ao Editar: ${error}`);
+          }
+        );
       }
     }
   }
 
+  onFileChange(event){
+    const reader = new FileReader();
+    if (event.target.file && event.target.files.length){
+        this.file = event.target.files;
+        console.log(this.file);
+    }
+  }
 
   excluirEvento(evento: Evento, template: any) {
     this.openModal(template);

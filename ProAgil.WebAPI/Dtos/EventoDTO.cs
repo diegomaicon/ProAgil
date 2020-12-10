@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -9,7 +10,7 @@ namespace ProAgil.WebAPI.Dtos
         public int Id { get; set; }
         [Required(ErrorMessage = "Campo obrigatório")]
         public string Local { get; set; }
-        public string DataEvento { get; set; }
+        public string  DataEvento { get; set; }
         [Required (ErrorMessage = "O Tema é de preenchimento obrigatório.")]
         public string Tema { get; set; }
         [Range(2, 120000, ErrorMessage = "Quantidade de pessoas de 2 até 120000")]

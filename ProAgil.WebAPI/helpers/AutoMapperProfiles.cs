@@ -10,10 +10,14 @@ namespace ProAgil.WebAPI.helpers
     {
        public AutoMapperProfiles()
       {
-         CreateMap<Evento,EventoDto>()
-            .ForMember(dest => dest.Palestrantes, opt => {
-               opt.MapFrom(src => src.PalestranteEventos.Select(x => x.Palestrante).ToList());
-            }).ReverseMap();
+        CreateMap<Evento, EventoDto>()
+                .ForMember(dest => dest.Palestrantes, opt => {
+                    opt.MapFrom(src => src.PalestranteEventos.Select(pe => pe.Palestrante).ToList());
+                })
+                .ForMember(dest => dest.DataEvento, opt => {
+                    opt.MapFrom(src => src.DataEvento.ToString("dd/MM/yyyy HH:mm"));
+                })
+                .ReverseMap();
    
          CreateMap<Palestrante,PalestranteDTO>()
             .ForMember(dest => dest.Eventos, opt => {

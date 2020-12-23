@@ -44,7 +44,7 @@ namespace ProAgil.WebAPI.Controllers
 
 
         [HttpPost("Upload")]
-        public async Task<IActionResult> Upload()
+        public IActionResult Upload()
         {
             try
             { 
@@ -54,14 +54,14 @@ namespace ProAgil.WebAPI.Controllers
 
                 if (file.Length > 0)
                 {
-                    var fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName;
+                    var fileName =  ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName;
                     var fullPath = Path.Combine(pathToSave, fileName.Replace("\""," ").Trim());
 
                     using(var stream = new FileStream(fullPath,FileMode.Create)){
                         file.CopyTo(stream);
                     }
                 } 
-                return  Ok();
+                return Ok();
                     
                    
             }
@@ -70,8 +70,7 @@ namespace ProAgil.WebAPI.Controllers
                 return this.StatusCode(StatusCodes.Status500InternalServerError,"Falha Conexão Banco Dados. Erro:" + ex.Message);
             }  
 
-            return BadRequest("Erro ao tentar realizar upload!");  
-           
+            
         }
 
         [HttpGet("{EventoId}")]

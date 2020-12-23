@@ -70,8 +70,8 @@ export class EventosComponent implements OnInit {
     this.registerForm = this.fb.group({
       tema: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(255)]] ,
       local: ['', Validators.required],
-      dataEvento: ['', Validators.required] ,
-      qtdPessoas: ['',[Validators.required, Validators.max(120000)]] ,
+      dataEvento: ['', Validators.required],
+      qtdPessoas: ['',[Validators.required, Validators.max(120000)]],
       imagemURL: ['', Validators.required] ,
       email: ['', [Validators.required, Validators.email]] ,
       telefone: ['', Validators.required],

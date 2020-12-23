@@ -39,9 +39,9 @@ namespace ProAgil.WebAPI.Controllers
        }
 
        [HttpGet("GetUser")]
-       public async Task<IActionResult> GetUser()
+       public IActionResult GetUser()
        {
-           return Ok(new UserDTO());
+           return  Ok(new UserDTO());
        }  
 
        [HttpPost("Register")]
@@ -129,10 +129,6 @@ namespace ProAgil.WebAPI.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             return tokenHandler.WriteToken(token);
-
-
-
-            return "";
         }
     }
 }

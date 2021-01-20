@@ -72,7 +72,7 @@ export class EventosComponent implements OnInit {
       local: ['', Validators.required],
       dataEvento: ['', Validators.required],
       qtdPessoas: ['',[Validators.required, Validators.max(120000)]],
-      imagemURL: ['', Validators.required] ,
+      imagemURL: [''] ,
       email: ['', [Validators.required, Validators.email]] ,
       telefone: ['', Validators.required],
     });
@@ -150,11 +150,12 @@ export class EventosComponent implements OnInit {
     }
   }
 
-  onFileChange(event){
+  onFileChange(event) {
     const reader = new FileReader();
-    if (event.target.file && event.target.files.length){
-        this.file = event.target.files;
-        console.log(this.file);
+
+    if (event.target.files && event.target.files.length) {
+      this.file = event.target.files;
+      console.log(this.file);
     }
   }
 

@@ -34,7 +34,7 @@
       <th>Data</th>
       <th>Qtde</th>
       <th>Lote</th>
-      <th>Opções</th>
+      <th colspan="2" class="text-center">Opções</th>
     </tr>
   </thead>
   <tbody *ngIf="eventos && eventos.length">
@@ -68,6 +68,11 @@
             <i class="fa fa-eraser"></i>
           </button> 
         </div>   
+      </td>
+      <td>
+        <a [routerLink]="['/evento', evento.id, 'edit']" tooltip="Edição Detalhada" class="btn btn-sm btn-warning">
+          <i class="fa fa-edit"></i>
+        </a>
       </td>
     </tr>
   </tbody>
@@ -140,12 +145,12 @@ role="dialog" aria-labelledby="dialog-sizes-name1">
             <table>
               <tr>
                 <td>
-                  <button class="btn btn-success" (click)=file.click()>
-                    Enviar imagem 
+                  <button class="btn btn-success" (click)="file.click()">
+                    Enviar Imagem
                   </button>
-                  <input type="file" #file class="form-control" 
-                  [ngClass]="{'is-invalid': registerForm.get('imagemURL').errors  &&  registerForm.get('imagemURL').touched}" (change)="onFileChange($event)" 
-                  formControlName="imagemURL" placeholder="" style="display: none">
+                  <input type="file" #file [ngClass]="{'is-invalid': registerForm.get('imagemURL').errors 
+                      && registerForm.get('imagemURL').touched}" (change)="onFileChange($event)" class="form-control is-invalid"
+                    formControlName="imagemURL" placeholder="" style="display: none">
                 </td>
               </tr>
             </table>

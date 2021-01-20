@@ -128,5 +128,24 @@ namespace ProAgil.Repository
             return await query.FirstOrDefaultAsync();
         }
 
+        public void DeleteRange<T>(T[] entity) where T : class
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Evento> GetEventoAsyncById(int EventoId, bool includePalestrantes)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Palestrante[]> GetAllPalestrantesAsyncByName(string name, bool includeEventos)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task<Palestrante> GetPalestranteAsync(int PalestranteId, bool includeEventos)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
